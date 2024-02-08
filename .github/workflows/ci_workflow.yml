@@ -1,0 +1,30 @@
+name: Continuous Integration Workflow
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    # Setup environment (Node.js example)
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14' # Specify your project's Node.js version
+
+    # Install dependencies
+    - name: Install dependencies
+      run: npm install
+
+    # Run project (customize according to your build script)
+    - name: Build
+      run: node app.js
+
+    # Run tests (customize according to your test script)
+    - name: Test
+      run: npm test
